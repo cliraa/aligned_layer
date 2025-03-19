@@ -1268,6 +1268,10 @@ ansible_operator_deploy: ## Deploy the Operator. Parameters: INVENTORY
 		-e "ecdsa_keystore_path=$(ECDSA_KEYSTORE)" \
 		-e "bls_keystore_path=$(BLS_KEYSTORE)"
 
+ansible_explorer_deploy:
+	@ansible-playbook infra/ansible/playbooks/explorer.yaml \
+		-i $(INVENTORY)
+
 ansible_telemetry_create_env:
 	@cp -n infra/ansible/playbooks/ini/config-telemetry.ini.example infra/ansible/playbooks/ini/config-telemetry.ini
 	@echo "Config files for Telemetry created in infra/ansible/playbooks/ini"
