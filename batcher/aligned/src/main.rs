@@ -323,6 +323,7 @@ enum NetworkNameArg {
     Holesky,
     HoleskyStage,
     Mainnet,
+    MainnetStage,
 }
 
 impl FromStr for NetworkNameArg {
@@ -334,8 +335,9 @@ impl FromStr for NetworkNameArg {
             "holesky" => Ok(NetworkNameArg::Holesky),
             "holesky-stage" => Ok(NetworkNameArg::HoleskyStage),
             "mainnet" => Ok(NetworkNameArg::Mainnet),
+            "mainnet-stage" => Ok(NetworkNameArg::MainnetStage),
             _ => Err(
-                "Unknown network. Possible values: devnet, holesky, holesky-stage, mainnet"
+                "Unknown network. Possible values: devnet, holesky, holesky-stage, mainnet, mainnet-stage"
                     .to_string(),
             ),
         }
@@ -348,9 +350,10 @@ struct NetworkArg {
         name = "The working network's name",
         long = "network",
         default_value = "devnet",
-        help = "[possible values: devnet, holesky, holesky-stage, mainnet]"
+        help = "[possible values: devnet, holesky, holesky-stage, mainnet, mainnet-stage]"
     )]
     network: Option<NetworkNameArg>,
+
     #[arg(
         name = "Aligned Service Manager Contract Address",
         long = "aligned_service_manager",
@@ -400,6 +403,7 @@ impl From<NetworkArg> for Network {
             Some(NetworkNameArg::Holesky) => Network::Holesky,
             Some(NetworkNameArg::HoleskyStage) => Network::HoleskyStage,
             Some(NetworkNameArg::Mainnet) => Network::Mainnet,
+            Some(NetworkNameArg::MainnetStage) => Network::MainnetStage,
         }
     }
 }
