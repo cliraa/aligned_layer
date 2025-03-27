@@ -410,6 +410,7 @@ pub enum Network {
     Holesky,
     HoleskyStage,
     Mainnet,
+    MainnetStage,
     Custom(String, String, String),
 }
 
@@ -420,6 +421,7 @@ impl Network {
             Self::Holesky => H160::from_str(ALIGNED_SERVICE_MANAGER_HOLESKY).unwrap(),
             Self::HoleskyStage => H160::from_str(ALIGNED_SERVICE_MANAGER_HOLESKY_STAGE).unwrap(),
             Self::Mainnet => H160::from_str(ALIGNED_SERVICE_MANAGER_MAINNET).unwrap(),
+            Self::MainnetStage => H160::from_str(ALIGNED_SERVICE_MANAGER_MAINNET_STAGE).unwrap(),
             Self::Custom(s, _, _) => H160::from_str(s.as_str()).unwrap(),
         }
     }
@@ -432,6 +434,9 @@ impl Network {
                 H160::from_str(BATCHER_PAYMENT_SERVICE_ADDRESS_HOLESKY_STAGE).unwrap()
             }
             Self::Mainnet => H160::from_str(BATCHER_PAYMENT_SERVICE_ADDRESS_MAINNET).unwrap(),
+            Self::MainnetStage => {
+                            H160::from_str(BATCHER_PAYMENT_SERVICE_ADDRESS_MAINNET_STAGE).unwrap()
+                        }
             Self::Custom(_, s, _) => H160::from_str(s.as_str()).unwrap(),
         }
     }
@@ -442,6 +447,7 @@ impl Network {
             Self::Holesky => BATCHER_URL_HOLESKY,
             Self::HoleskyStage => BATCHER_URL_HOLESKY_STAGE,
             Self::Mainnet => BATCHER_URL_MAINNET,
+            Self::MainnetStage => BATCHER_URL_MAINNET_STAGE,
             Self::Custom(_, _, s) => s.as_str(),
         }
     }
