@@ -59,14 +59,21 @@ pub const BATCHER_PAYMENT_SERVICE_ADDRESS_HOLESKY_STAGE: &str =
     "0x7577Ec4ccC1E6C529162ec8019A49C13F6DAd98b";
 pub const BATCHER_PAYMENT_SERVICE_ADDRESS_MAINNET: &str =
     "0xb0567184A52cB40956df6333510d6eF35B89C8de";
+pub const BATCHER_PAYMENT_SERVICE_ADDRESS_MAINNET_STAGE: &str =
+    "0x88ad27EfBeF16b6fC5b2E40c5155d61876f847c5";
+
 /// AlignedServiceManager
 pub const ALIGNED_SERVICE_MANAGER_DEVNET: &str = "0x851356ae760d987E095750cCeb3bC6014560891C";
 pub const ALIGNED_SERVICE_MANAGER_HOLESKY: &str = "0x58F280BeBE9B34c9939C3C39e0890C81f163B623";
 pub const ALIGNED_SERVICE_MANAGER_HOLESKY_STAGE: &str =
     "0x9C5231FC88059C086Ea95712d105A2026048c39B";
 pub const ALIGNED_SERVICE_MANAGER_MAINNET: &str = "0xeF2A435e5EE44B2041100EF8cbC8ae035166606c";
+pub const ALIGNED_SERVICE_MANAGER_MAINNET_STAGE: &str =
+    "0x96b6a29D7B98519Ae66E6398BD27A76B30a5dC3f";
+
 /// Batcher URL's
 pub const BATCHER_URL_DEVNET: &str = "ws://localhost:8080";
 pub const BATCHER_URL_HOLESKY: &str = "wss://batcher.alignedlayer.com";
 pub const BATCHER_URL_HOLESKY_STAGE: &str = "wss://stage.batcher.alignedlayer.com";
 pub const BATCHER_URL_MAINNET: &str = "wss://mainnet.batcher.alignedlayer.com";
+pub const BATCHER_URL_MAINNET_STAGE: &str = "wss://mainnetstage.batcher.alignedlayer.com";
