@@ -167,6 +167,9 @@ start_proof_aggregator: is_aggregator_set ## Starts proof aggregator with provin
 start_proof_aggregator_gpu: is_aggregator_set ## Starts proof aggregator with proving + GPU acceleration (CUDA)
 	AGGREGATOR=$(AGGREGATOR) SP1_PROVER=cuda cargo run --manifest-path ./aggregation_mode/Cargo.toml --release --features prove,gpu -- config-files/config-proof-aggregator.yaml
 
+install_aggregation_mode: ## Install the aggregation mode with proving enabled
+	cargo install --path aggregation_mode --features prove
+
 _AGGREGATOR_:
 
 build_aggregator:
