@@ -200,7 +200,7 @@ verify_aggregated_proof_risc0_holesky_stage:
 		--rpc_url https://ethereum-holesky-rpc.publicnode.com
 
 install_aggregation_mode: ## Install the aggregation mode with proving enabled
-	cargo install --path aggregation_mode --features prove
+	cargo install --path aggregation_mode --features prove,gpu
 
 _AGGREGATOR_:
 
