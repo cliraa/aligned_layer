@@ -572,6 +572,11 @@ batcher_send_burst_groth16: batcher/target/release/aligned
 	@mkdir -p scripts/test_files/gnark_groth16_bn254_infinite_script/infinite_proofs
 	@./batcher/aligned/send_burst_tasks.sh $(BURST_SIZE) $(START_COUNTER)
 
+batcher_send_proof_with_random_address:
+	@cd batcher/aligned/ && ./send_proof_with_random_address.sh
+
+batcher_send_burst_with_random_address:
+	@cd batcher/aligned/ && ./send_burst_with_random_address.sh
 
 __TASK_SENDER__:
 BURST_TIME_SECS ?= 3
