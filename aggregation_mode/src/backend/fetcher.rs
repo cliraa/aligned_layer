@@ -5,14 +5,18 @@ use super::{
     types::{AlignedLayerServiceManager, AlignedLayerServiceManagerContract, RPCProvider},
 };
 use crate::{
-    aggregators::{sp1_aggregator::SP1ProofWithPubValuesAndElf, AlignedProof},
+    aggregators::{
+        risc0_aggregator::Risc0ProofReceiptAndImageId, sp1_aggregator::SP1ProofWithPubValuesAndElf,
+        AlignedProof, ZKVMEngine,
+    },
     backend::s3::get_aligned_batch_from_s3,
 };
-use aligned_sdk::core::types::ProvingSystemId;
+use aligned_sdk::common::types::ProvingSystemId;
 use alloy::{
     primitives::Address,
     providers::{Provider, ProviderBuilder},
 };
+use risc0_zkvm::Receipt;
 use tracing::{error, info};
 
 #[derive(Debug)]
@@ -46,7 +50,13 @@ impl ProofsFetcher {
         }
     }
 
-    pub async fn fetch(&mut self) -> Result<Vec<AlignedProof>, ProofsFetcherError> {
+    /// Retrieves batches from the aligned fast mode since the last processed block,
+    /// filtering for proofs compatible with the specified zkVM engine.
+    pub async fn fetch(
+        &mut self,
+        engine: ZKVMEngine,
+        limit: u16,
+    ) -> Result<Vec<AlignedProof>, ProofsFetcherError> {
         // Get current block
         let current_block = self
             .rpc_provider
@@ -77,12 +87,9 @@ impl ProofsFetcher {
 
         info!("Logs collected {}", logs.len());
 
-        // Update last processed block after collecting logs
-        self.last_aggregated_block = current_block;
-
         let mut proofs = vec![];
 
-        for (batch, _) in logs {
+        for (batch, log) in logs {
             info!(
                 "New batch submitted, about to process. Batch merkle root {}...",
                 batch.batchMerkleRoot
@@ -99,28 +106,62 @@ impl ProofsFetcher {
 
             info!("Data downloaded from S3, number of proofs {}", data.len());
 
-            // Filter SP1 compressed proofs to and push to queue to be aggregated
-            let proofs_to_add: Vec<AlignedProof> = data
-                .into_iter()
-                .filter_map(|p| match p.proving_system {
-                    ProvingSystemId::SP1 => {
-                        let elf = p.vm_program_code?;
-                        let proof_with_pub_values = bincode::deserialize(&p.proof).ok()?;
-                        let sp1_proof = SP1ProofWithPubValuesAndElf {
-                            proof_with_pub_values,
-                            elf,
-                        };
+            // Filter compatible proofs to be aggregated and push to queue
+            let proofs_to_add: Vec<AlignedProof> = match engine {
+                ZKVMEngine::SP1 => data
+                    .into_iter()
+                    .filter_map(|p| match p.proving_system {
+                        ProvingSystemId::SP1 => {
+                            let elf = p.vm_program_code?;
+                            let proof_with_pub_values = bincode::deserialize(&p.proof).ok()?;
+                            let sp1_proof = SP1ProofWithPubValuesAndElf {
+                                proof_with_pub_values,
+                                elf,
+                            };
 
-                        Some(AlignedProof::SP1(sp1_proof))
-                    }
-                    _ => None,
-                })
-                .collect();
+                            Some(AlignedProof::SP1(sp1_proof.into()))
+                        }
+
+                        _ => None,
+                    })
+                    .collect(),
+                ZKVMEngine::RISC0 => data
+                    .into_iter()
+                    .filter_map(|p| match p.proving_system {
+                        ProvingSystemId::Risc0 => {
+                            let mut image_id = [0u8; 32];
+                            image_id.copy_from_slice(p.vm_program_code?.as_slice());
+                            let public_inputs = p.pub_input?;
+                            let inner_receipt: risc0_zkvm::InnerReceipt =
+                                bincode::deserialize(&p.proof).ok()?;
+
+                            let receipt = Receipt::new(inner_receipt, public_inputs);
+                            let risc0_proof = Risc0ProofReceiptAndImageId { image_id, receipt };
+
+                            Some(AlignedProof::Risc0(risc0_proof.into()))
+                        }
+                        _ => None,
+                    })
+                    .collect(),
+            };
 
             info!(
-                "SP1 proofs filtered, total proofs to add {}",
+                "{} Proofs filtered, compatible proofs found {}",
+                engine,
                 proofs_to_add.len()
             );
+
+            if (proofs.len() + proofs_to_add.len()) > (limit as usize) {
+                let log_block_number = log.block_number.unwrap();
+                info!(
+                    "Limit of {} proofs reached, stopping at block number {}, which is {} from current block",
+                    limit, log_block_number, current_block - log_block_number
+                );
+                // Update last processed block to this log block number
+                // So the next aggregation starts at this block
+                self.last_aggregated_block = log_block_number;
+                return Ok(proofs);
+            }
 
             // try to add them to the queue
             for proof in proofs_to_add {
@@ -132,6 +173,9 @@ impl ProofsFetcher {
                 proofs.push(proof);
             }
         }
+
+        // Update last processed block after collecting logs
+        self.last_aggregated_block = current_block;
 
         Ok(proofs)
     }
