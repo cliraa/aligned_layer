@@ -49,9 +49,9 @@ func main() {
 	//	r1cs := ccs.(*cs.SparseR1CS)
 	// as srs is not used in the setup, we can remove it
 	//	srs, err := test.NewKZGSRS(r1cs)
-	if err != nil {
-		panic("KZG setup error")
-	}
+	//if err != nil {
+	//	panic("KZG setup error")
+	//}
 
 	// no need to use srs in the setup
 	pk, vk, _ := groth16.Setup(ccs)
@@ -94,9 +94,24 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
-	defer proofFile.Close()
-	defer vkFile.Close()
-	defer witnessFile.Close()
+	defer func(proofFile *os.File) {
+		err := proofFile.Close()
+		if err != nil {
+			log.Fatal("could not close proof file:", err)
+		}
+	}(proofFile)
+	defer func(vkFile *os.File) {
+		err := vkFile.Close()
+		if err != nil {
+			log.Fatal("could not close verification key file:", err)
+		}
+	}(vkFile)
+	defer func(witnessFile *os.File) {
+		err := witnessFile.Close()
+		if err != nil {
+			log.Fatal("could not close witness file:", err)
+		}
+	}(witnessFile)
 
 	_, err = proof.WriteTo(proofFile)
 	if err != nil {

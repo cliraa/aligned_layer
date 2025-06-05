@@ -30,6 +30,9 @@ fn main() {
     client.verify(&proof, &vk).expect("failed to verify proof");
     println!("Successfully verified proof!");
 
+    // Print ELF
+    println!("{}", hex::encode(vk.hash_bytes()));
+
     proof
         .save("../sp1_fibonacci.proof")
         .expect("failed to save proof");
