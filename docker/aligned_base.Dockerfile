@@ -25,7 +25,7 @@ ENV PATH="/usr/local/go/bin:${PATH}"
 
 # Install go deps
 RUN go install github.com/maoueh/zap-pretty@v0.3.0
-RUN go install github.com/ethereum/go-ethereum/cmd/abigen@latest
+RUN go install github.com/ethereum/go-ethereum/cmd/abigen@v1.14.0
 RUN go install github.com/Layr-Labs/eigenlayer-cli/cmd/eigenlayer@v0.13.0
 
 # Install rust
@@ -61,7 +61,7 @@ RUN cargo chef prepare --recipe-path /aligned_layer/operator/merkle_tree/lib/rec
 
 FROM chef AS chef_builder
 
-COPY batcher/aligned-sdk /aligned_layer/batcher/aligned-sdk/
+COPY crates/sdk /aligned_layer/crates/sdk/
 
 # build_sp1_linux
 COPY operator/sp1/ /aligned_layer/operator/sp1/
@@ -88,8 +88,8 @@ ENV TARGET_REL_PATH=release
 ENV CARGO_NET_GIT_FETCH_WITH_CLI=true
 
 COPY operator/ /aligned_layer/operator/
-COPY batcher/ /aligned_layer/batcher/
-COPY --from=chef_builder /aligned_layer/batcher/aligned-sdk /aligned_layer/batcher/aligned-sdk
+COPY crates/ /aligned_layer/crates/
+COPY --from=chef_builder /aligned_layer/crates/sdk /aligned_layer/crates/sdk
 
 # build_sp1_linux
 COPY --from=chef_builder /aligned_layer/operator/sp1/lib/target/ /aligned_layer/operator/sp1/lib/target/
