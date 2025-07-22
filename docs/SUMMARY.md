@@ -12,7 +12,7 @@
 
 * [Supported Verifiers](2_architecture/0_supported_verifiers.md)
 * [Key Terms](2_architecture/0b_key_terms.md)
-* [Fast mode](2_architecture/1_fast_mode.md)
+* [Proof Verification Layer](2_architecture/1_proof_verification_layer.md)
     * [Batcher](./2_architecture/components/1_batcher.md)
     * [Payment Service Contract](./2_architecture/components/2_payment_service_contract.md)
     * [Service Manager Contract](./2_architecture/components/3_service_manager_contract.md)
