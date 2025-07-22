@@ -27,7 +27,7 @@ The list below contains examples or projects using ZK. It is meant to illustrate
 
 - Rollups
 - On-chain gaming
-- ZK Machine Learning (ZKML)
+- ZK Machine Learning (zkML)
 - ZK-TLS
 - Bridges
 - Oracles
