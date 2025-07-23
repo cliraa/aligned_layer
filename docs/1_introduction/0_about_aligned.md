@@ -24,7 +24,7 @@ Aligned suite of products and services includes:
 - Interoperability Protocol
 - Wallet-as-a-Service
 
-![Figure 1: Aligned Suite of Products.png](../images/aligned_suite_of_products.png)
+![Figure 1: Aligned Suite of Products](../images/aligned_suite_of_products.png)
 
 Read more: [The Aligned Roadmap](https://blog.alignedlayer.com/the-aligned-roadmap-ethereum-as-a-financial-backend/)
 
