@@ -6,7 +6,7 @@ The EigenLayer Operator FAQ is available [here](https://docs.eigenlayer.xyz/eige
 
 To get whitelisted,
 you need to fill out the form available [here](https://docs.google.com/forms/d/e/1FAIpQLSdH9sgfTz4v33lAvwj6BvYJGAeIshQia3FXz36PFfF-WQAWEQ/viewform)
-and wait for the Aligned team to approve your request.
+and wait for the Aligned team to approve your request
 
 ### What Strategies Tokens are supported in Mainnet?
 
