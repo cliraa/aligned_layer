@@ -12,7 +12,7 @@
 - ZK Coprocessor: ZK allows complex computations to be delegated from the blockchain to a coprocessor. This can retrieve information from the blockchain and perform the computations securely in a more efficient way.  
 - Encrypted Mempools using SNARKs to show the correctness of the encryption.
 - Protocols against misinformation and fake news: you can generate proofs that an image or audio comes from a given device, and show that a published image is the result of certain transformations performed on the original image.  
-- On-chain gaming
+- On-chain gaming.
 
 ## Projects built using Aligned
 
