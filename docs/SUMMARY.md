@@ -19,7 +19,7 @@
     * [Operator](./2_architecture/components/4_operator.md)
     * [Aggregator](./2_architecture/components/5_aggregator.md)
     * [Explorer](./2_architecture/components/6_explorer.md)
-* [Proof Aggregation Service](2_architecture/2_aggregation_mode.md)
+* [Aggregation Mode](2_architecture/2_aggregation_mode.md)
     * [Deep Dive](2_architecture/agg_mode_components/1_deep_dive.md)
 * [Rollup-as-a-Service Platform](3_raas_platform.md)
 
