@@ -42,7 +42,7 @@ Aligned’s Proof Verification Layer runs the verifier’s code natively. The ve
 
 ### How does the throughput of Aligned’s Proof Verification Layer compare with Ethereum?
 
-Ethereum runs on top of the EVM. Each block is limited to 30,000,000 gas. Since the most efficient proof systems take at least 250,000 gas, Ethereum can verify 120 proofs per block. Aligned's Proof Verification Layer runs the code natively and leverages parallelization, reaching 30,000 proofs in the same period.
+Ethereum runs on top of the EVM. Each block is limited to 45,000,000 gas. Since the most efficient proof systems take at least 250,000 gas, Ethereum can verify 180 proofs per block. Aligned's Proof Verification Layer runs the code natively and leverages parallelization, reaching 30,000 proofs in the same period.
 
 ### Why is Aligned buiding its stack?
 
