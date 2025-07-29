@@ -24,7 +24,7 @@ A batcher can censor proofs. The user can run their own batcher to avoid censors
 
 ### How do I send proofs without a batcher?
 
-You can see the steps to do it in [this guide](https://docs.alignedlayer.com/guides/8_submitting_batch_without_batcher).
+You can see the steps to do it in [this guide](../3_guides/8_submitting_batch_without_batcher.md).
 
 ### How do I run my own batcher?
 
