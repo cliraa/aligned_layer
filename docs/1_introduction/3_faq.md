@@ -52,7 +52,7 @@ Aligned is building its stack to provide the infrastructure for a trustless, ver
     
 No. Aligned is a vertically integrated stack for building applications on a verifiable internet. However, our stack offers one-click solutions for rollups, as well as wallets, and several ZK services.
     
-### What does it cost to verify proofs using Aligned's Proof Verification Layer?
+### How much it cost to verify proofs using Aligned's Proof Verification Layer?
     
 The cost ($C$) of proof verification using Aligned's Proof Verification Layer is the cost of task creation ($C_{task}$) plus the cost of verifying an aggregated BLS signature ($C_{verification}$), divided by the number of proofs ($N$) in the batch, plus the the cost of reading the results on-chain ($C_{read}$).
     
