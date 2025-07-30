@@ -26,7 +26,7 @@ Aligned suite of products and services includes:
 
 ![Figure 1: Aligned Suite of Products](../images/aligned_suite_of_products.png)
 
-Read more: [The Aligned Roadmap](https://blog.alignedlayer.com/the-aligned-roadmap-ethereum-as-a-financial-backend/)
+Read more: [The Aligned Roadmap](https://roadmap.alignedlayer.com)
 
 By vertically integrating our stack we can provide the best developer experience and highest performance at the lowest possible cost.
 

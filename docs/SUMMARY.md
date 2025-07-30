@@ -19,8 +19,9 @@
     * [Operator](./2_architecture/components/4_operator.md)
     * [Aggregator](./2_architecture/components/5_aggregator.md)
     * [Explorer](./2_architecture/components/6_explorer.md)
-* [Aggregation mode](2_architecture/2_aggregation_mode.md)
+* [Proof Aggregation Service](2_architecture/2_aggregation_mode.md)
     * [Deep Dive](2_architecture/agg_mode_components/1_deep_dive.md)
+* [Rollup-as-a-Service Platform](3_raas_platform.md)
 
 ## Guides
 
@@ -28,7 +29,7 @@
 * [Build your first Aligned Application](3_guides/2_build_your_first_aligned_application.md)
     * [Modify ZkQuiz Questions](3_guides/2.2_modify_zkquiz_questions.md)
 * [Validating public input](3_guides/3_validating_public_input.md)
-* [Aggregation Mode](3_guides/3.1_aggregation_mode.md)
+* [Proof Aggregation Service](3_guides/3.1_aggregation_mode.md)
 * [SDK Intro](3_guides/1_SDK_how_to.md)
 * [SDK API Reference](3_guides/1.2_SDK_api_reference.md)
 * [Generating proofs for Aligned](3_guides/4_generating_proofs.md)

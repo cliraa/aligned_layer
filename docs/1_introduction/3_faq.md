@@ -24,7 +24,7 @@ A batcher can censor proofs. The user can run their own batcher to avoid censors
 
 ### How do I send proofs without a batcher?
 
-You can see the steps to do it in [this guide](https://docs.alignedlayer.com/guides/8_submitting_batch_without_batcher).
+You can see the steps to do it in [this guide](../3_guides/8_submitting_batch_without_batcher.md).
 
 ### How do I run my own batcher?
 
@@ -42,17 +42,17 @@ Aligned’s Proof Verification Layer runs the verifier’s code natively. The ve
 
 ### How does the throughput of Aligned’s Proof Verification Layer compare with Ethereum?
 
-Ethereum runs on top of the EVM. Each block is limited to 30,000,000 gas. Since the most efficient proof systems take at least 250,000 gas, Ethereum can verify 120 proofs per block. Aligned's Proof Verification Layer runs the code natively and leverages parallelization, reaching 30,000 proofs in the same period.
+Ethereum runs on top of the EVM. Each block is limited to 45,000,000 gas. Since the most efficient proof systems take at least 250,000 gas, Ethereum can verify 180 proofs per block. Aligned's Proof Verification Layer runs the code natively and leverages parallelization, reaching 30,000 proofs in the same period.
 
 ### Why is Aligned buiding its stack?
 
-Aligned is building its stack to provide the infrastructure for a trustless, verifiable internet. Its vertically integrated stack enables developers to create applications across industries like finance and AI, with one-click solutions for rollups, wallets, and several zero-knowledge (ZK) services. Innovations in proving virtual machines, like Risc0, Valida, Jolt, SP1, and Valida, allow users to generate proof of computation integrity using languages like Rust or C. However, Ethereum’s proof verification is costly and slow, limiting innovation. Aligned addresses this with its Proof Verification Layer and Proof Aggregation Service, reducing verification costs and increasing throughput. In addition, Aligned offers a Wallet-as-a-Service infrastructure for simplifying wallet generation, and a Rollup-as-a-Service (RaaS) platform for easy ZK-rollup deployment. Its Interoperability Protocol also supports trust-minimized cross-chain liquidity movement. Together, these innovations aim to build a scalable, secure, and trustless internet.
+Aligned is building its stack to provide the infrastructure for a trustless, verifiable internet. Its vertically integrated stack enables developers to create applications across industries like finance and AI, with one-click solutions for rollups, wallets, and several zero-knowledge (ZK) services. Innovations in proving virtual machines, like Risc0, Jolt, SP1, and Valida, allow users to generate proof of computation integrity using languages like Rust or C. However, Ethereum’s proof verification is costly and slow, limiting innovation. Aligned addresses this with its Proof Verification Layer and Proof Aggregation Service, reducing verification costs and increasing throughput. In addition, Aligned offers a Wallet-as-a-Service infrastructure for simplifying wallet generation, and a Rollup-as-a-Service (RaaS) platform for easy ZK-rollup deployment. Its Interoperability Protocol also supports trust-minimized cross-chain liquidity movement. Together, these innovations aim to build a scalable, secure, and trustless internet.
 
 ### Is Aligned an Ethereum L2?
     
 No. Aligned is a vertically integrated stack for building applications on a verifiable internet. However, our stack offers one-click solutions for rollups, as well as wallets, and several ZK services.
     
-### What does it cost to verify proofs using Aligned's Proof Verification Layer?
+### How much it cost to verify proofs using Aligned's Proof Verification Layer?
     
 The cost ($C$) of proof verification using Aligned's Proof Verification Layer is the cost of task creation ($C_{task}$) plus the cost of verifying an aggregated BLS signature ($C_{verification}$), divided by the number of proofs ($N$) in the batch, plus the the cost of reading the results on-chain ($C_{read}$).
     
